@@ -1,0 +1,43 @@
+# config/deploy.rb
+require "bundler/capistrano"
+
+load "debot/debot/recipes/base"
+load "debot/debot/recipes/imagemagick"
+load "debot/debot/recipes/nginx"
+load "debot/debot/recipes/unicorn"
+load "debot/debot/recipes/postgresql"
+load "debot/debot/recipes/nodejs"
+load "debot/debot/recipes/rbenv"
+load "debot/debot/recipes/check"
+
+server "<%=server%>", :domain, :web, :app, :db, primary: true
+
+set :user, "<%=user%>"
+set :group, "<%=group%>"
+set :use_sudo, false
+set :keep_releases, <%=group%> # keep only the last 7 releases
+
+set :application, "<%=application%>"
+set :stages, %w(<%=stages%>)
+set :default_stage, "<%=stages.first%>"
+
+# This needs to be after the stages variable declaration
+require "capistrano/ext/multistage"
+
+set :default_shell, "bash -l" # set the cap shell to be same as user's SSH environment
+
+default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
+
+set :scm, :git
+set :scm_verbose, true
+set :repository, "<%=repository%>"
+set :migrate_target, :current
+set :rails_env, "production"
+set :environment, "production"
+set :normalize_asset_timestamps, false
+set :deploy_via, :remote_cache
+
+#ssh_options[:verbose] = :debug # don't remove it's very important and meant for debugging capistrano
+
+after "deploy", "deploy:cleanup"
