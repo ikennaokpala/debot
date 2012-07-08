@@ -1,0 +1,1 @@
+require 'debot/debot_recipes'
