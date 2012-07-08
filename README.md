@@ -2,6 +2,12 @@
 
 Custom recipes that extend capisttrno for provisioning and deploying rails application to a VPS..
 
+This gem originates from the Ryan bates excellent series of screencasts on deployment.. i suggest you should check it out..
+
+1. [Capistrano Recipes](http://railscasts.com/episodes/337-capistrano-recipes)
+2. [Deploying to a VPS](http://railscasts.com/episodes/335-deploying-to-a-vps)
+3. [Deployment etc..](http://railscasts.com/?tag_id=21)
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -19,16 +25,19 @@ Or install it yourself as:
 You need to require debot in you deploy.rb file
 
 ## Usage
+For a detailed list of all the the task availble:
 
-To provision an ubuntu based VPS.
+$ cap -vT
 
-$ cap deploy:install # this will setup you ubuntu server with nginx, uncorn, imagemagick, postgresql for action..
+To provision an ubuntu based VPS:
 
-$ cap go:live # to take the application live
+$ cap deploy:install
 
-$ cap go:down # this will put you app on standby mode while your figure out what might be going wrong
+$ cap go:live
 
-$ cap deploy:takedown # this does the opposite of install buy removing all configuration and file for a apticular site.
+$ cap go:down
+
+$ cap deploy:takedown
 
 ## Contributing
 
