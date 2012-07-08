@@ -2,7 +2,7 @@
 
 Custom recipes that extend capisttrno for provisioning and deploying rails application to a VPS..
 
-This gem originates from the Ryan bates excellent series of screencasts on deployment.. i suggest you should check it out..
+This gem originates from Railscasts (Ryan Bates) excellent series of screencasts on deployment.. I suggest you should check it out..
 
 1. [Capistrano Recipes](http://railscasts.com/episodes/337-capistrano-recipes)
 2. [Deploying to a VPS](http://railscasts.com/episodes/335-deploying-to-a-vps)
