@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Home made capistrano recipes bundle into a gem..}
   gem.homepage      = "http://github.com/kengimel/debot"
 
-  gem.required_rubygems_version = ">= 0.0.1.alpha"
+  gem.required_rubygems_version = ">= #{Debot::VERSION}"
   gem.rubyforge_project = "debot"
 
 
