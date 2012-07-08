@@ -26,6 +26,6 @@ Capistrano::Configuration.instance.load do
       run "gem install bundler --no-ri --no-rdoc"
       run "rbenv rehash"
     end
-    after "deploy:install", "rbenv:install"
+    after "debot:install", "rbenv:install"
   end
 end

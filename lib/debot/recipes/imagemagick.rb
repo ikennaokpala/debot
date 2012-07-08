@@ -5,6 +5,6 @@ Capistrano::Configuration.instance.load do
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install libmagickwand-dev imagemagick"
     end
-    after "deploy:install", "imagemagick:install"
+    after "debot:install", "imagemagick:install"
   end
 end

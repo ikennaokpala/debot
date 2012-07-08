@@ -16,14 +16,14 @@ Capistrano::Configuration.instance.load do
       run "#{sudo} mv #{shared_path}/unicorn/unicorn_init /etc/init.d/unicorn_#{domain}"
       run "#{sudo} update-rc.d -f unicorn_#{domain} defaults"
     end
-    after "deploy:setup", "unicorn:setup"
+    after "debot:setup", "unicorn:setup"
 
     %w[start stop restart].each do |command|
       desc "#{command} unicorn"
       task command, roles: :app do
         run "service unicorn_#{domain} #{command}"
       end
-      after "deploy:#{command}", "unicorn:#{command}"
+      after "debot:#{command}", "unicorn:#{command}"
     end
   end
 end

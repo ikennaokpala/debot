@@ -6,7 +6,7 @@
       run "#{sudo} apt-get -y update"
       run "#{sudo} apt-get -y install nginx"
     end
-    after "deploy:install", "nginx:install"
+    after "debot:install", "nginx:install"
 
     desc "Setup nginx configuration for this application"
     task :setup, roles: :web do
@@ -16,7 +16,7 @@
       #run "#{sudo} rm -f /etc/nginx/sites-enabled/default"
       restart
     end
-    after "deploy:setup", "nginx:setup"
+    after "debot:setup", "nginx:setup"
 
     %w[start stop restart].each do |command|
       desc "#{command} nginx"

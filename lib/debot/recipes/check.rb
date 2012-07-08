@@ -8,8 +8,8 @@ Capistrano::Configuration.instance.load do
         exit
       end
     end
-  #before "deploy", "check:revision"
-  #before "deploy:migrations", "check:revision"
-  #before "deploy:cold", "check:revision"
+  #before "debot", "check:revision"
+  #before "debot:migrations", "check:revision"
+  #before "debot:cold", "check:revision"
   end
 end
