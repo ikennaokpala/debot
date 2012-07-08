@@ -19,14 +19,6 @@ Capistrano::Configuration.instance.load do
     before "deploy:takedown","unicorn:stop"
     after "deploy:takedown", "nginx:restart"
 
-    desc "Upload assets images to the shared path"
-    task :upload_images do
-      # run "if [[ ! -d #{shared_path}/assets/images ]]; then mkdir -p #{shared_path}/assets/images/;   fi" # if folder assets is not found the create create it with sub folders images and db
-      system "rsync -vr --exclude='.DS_Store' #{ENV['HOME']}/source/scribes/site_images/propertydey/images/ #{user}@#{application}.com:#{shared_path}/assets/"
-    end
-    after "deploy:setup", "deploy:upload_images"
-  end
-
   namespace :go do
     desc "Switch to shortly page and move routes file"
     task :down do
