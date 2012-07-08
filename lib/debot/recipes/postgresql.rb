@@ -1,4 +1,4 @@
-Capistrano::Configuration.instance do
+Capistrano::Configuration.instance.load do
   set_default(:postgresql_host, "localhost")
   set_default(:postgresql_user) { stage_db_user }
   set_default(:postgresql_password) { Capistrano::CLI.password_prompt "PostgreSQL Password: " }

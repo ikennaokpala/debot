@@ -1,4 +1,4 @@
- Capistrano::Configuration.instance do
+ Capistrano::Configuration.instance.load do
   namespace :nodejs do
     desc "Install the latest relase of Node.js"
     task :install, roles: :app do

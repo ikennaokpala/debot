@@ -1,4 +1,4 @@
-Capistrano::Configuration.instance do
+Capistrano::Configuration.instance.load do
   set_default :ruby_version, "1.9.3-p125"
   #set_default :rbenv_bootstrap, "bootstrap-ubuntu-11-10"
 

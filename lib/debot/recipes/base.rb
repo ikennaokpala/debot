@@ -1,6 +1,16 @@
-Capistrano::Configuration.instance do
+def template(from, to)
+  erb = File.read(File.expand_path("../templates/#{from}", __FILE__))
+  put ERB.new(erb).result(binding), to
+end
 
-  namespace :debot do
+def set_default(name, *args, &block)
+  set(name, *args, &block) unless exists?(name)
+end
+unless Capistrano::Configuration.respond_to?(:instance)
+  abort "capistrano/ext/multistage requires Capistrano 2"
+end
+Capistrano::Configuration.instance.load do
+  namespace :deploy do
     desc "Install everything onto the server"
     task :install do
       run "#{sudo} apt-get -y update"
@@ -43,14 +53,4 @@ Capistrano::Configuration.instance do
     end
     after "go:live", "deploy:restart"
   end
-
-  def template(from, to)
-    erb = File.read(File.expand_path("../templates/#{from}", __FILE__))
-    put ERB.new(erb).result(binding), to
-  end
-
-  def set_default(name, *args, &block)
-    set(name, *args, &block) unless exists?(name)
-  end
-
 end

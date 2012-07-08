@@ -1,4 +1,4 @@
- Capistrano::Configuration.instance do
+ Capistrano::Configuration.instance.load do
   namespace :nginx do
     desc "Install latest stable release of nginx"
     task :install, roles: :web do

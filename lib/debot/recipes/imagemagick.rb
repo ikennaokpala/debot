@@ -1,4 +1,4 @@
-Capistrano::Configuration.instance do
+Capistrano::Configuration.instance.load do
   namespace :imagemagick do
     desc "Installing ImageMagick"
     task :install, roles: :web do
