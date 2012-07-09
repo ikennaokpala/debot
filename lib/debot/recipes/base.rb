@@ -1,4 +1,4 @@
-require_relative 'helpers'
+require_relative '../helpers/utils'
 
 begin
   Capistrano::Configuration.instance.load do
