@@ -3,5 +3,5 @@ set :domain, "<%=domain%>"
 set :branch, "<%=branch%>"
 set :deploy_to, "<%=deploy_to%>"
 
-set_default(:stage, "production")
+set_default(:stage, "<%=stage_name%>")
 set_default(:stage_db_user, "<%=stage_db_user%>")
