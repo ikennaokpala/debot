@@ -1,6 +1,6 @@
 # Debot
 
-Custom recipes that extend capisttrno for provisioning and deploying rails application to a VPS..
+Custom recipes that extend capistrano for provisioning and deploying rails application to a VPS..
 
 This gem originates from Railscasts (Ryan Bates) excellent series of screencasts on deployment.. I
  suggest you should check it out..
@@ -39,6 +39,12 @@ $ cap go:live
 $ cap go:down
 
 $ cap deploy:takedown
+
+##Version
+
+0.0.1.alpha
+
+(I am just pouring out ideas on this gem, as i use it on multiple projects. it is under constant development. You are welcome to contribute, try it out and give feeback)
 
 ## Contributing
 
