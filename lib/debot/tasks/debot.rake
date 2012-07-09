@@ -33,7 +33,7 @@ module Ask
   end
 
 private
-  def process(question)
+  def self.process(question)
     puts question
     STDIN.gets.chomp.downcase #returns user input
   end
