@@ -10,7 +10,7 @@ set :group, "<%=@group%>"
 set :use_sudo, false
 set :keep_releases, <%=@number_of_releases%> # keep only the last 7 releases
 
-set :application, "<%=@application%>"
+set :application, "<%=@application_name%>"
 set :stages, %w(<%=@stage_names.join(" ")%>)
 set :default_stage, "<%=@stage_names.first%>"
 
