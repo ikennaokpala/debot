@@ -1,6 +1,7 @@
 def template(from, to)
+  require 'erb'
   erb = File.read(File.expand_path("../../../../generators/templates/#{from}", __FILE__))
-  put ERB.new(erb).result(binding), to
+  File.open(to, 'w') { |f| f.write(ERB.new(erb).result(binding)) } 
 end
 
 def set_default(name, *args, &block)
