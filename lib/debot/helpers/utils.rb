@@ -8,6 +8,8 @@ def set_default(name, *args, &block)
   set(name, *args, &block) unless exists?(name)
 end
 
+require 'rails'
+
 module Setup
   def self.ask(question)
     process(question)
@@ -19,6 +21,7 @@ module Setup
 
   def self.run
     puts "Kindly provide the following details:"
+    puts 
     @server = ask("Your server name or IP address:")
     @application_name = ask("Your application name:")
     @user = ask("Your deployment user's name:")
@@ -26,12 +29,12 @@ module Setup
     @number_of_releases = ask("How many releases would like to keep?")
     @scm = ask("Your choosen scm (git or svn)?")
     @repository = ask("Enter your repository's url/location:")
+    @app_parent_directory = ask("What is the parent directory for this project? (Given full path details)")
     @stage_names = []
-    @domain = ""
-    @branch = ""
 
     begin
       puts "Provide details for creating a multi-stage file:"
+      puts
       @stage_name = ask("What would you like to call this stage file?")
       @stage_names << @stage_name
       @domain = ask("What is your domain name?")
