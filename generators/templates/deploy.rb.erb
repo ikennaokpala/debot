@@ -22,7 +22,7 @@ set :default_shell, "bash -l" # set the cap shell to be same as user's SSH envir
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
-set :scm, :git
+set :scm, :<%=@scm%>
 set :scm_verbose, true
 set :repository, "<%=@repository%>"
 set :migrate_target, :current
@@ -30,6 +30,8 @@ set :rails_env, "production"
 set :environment, "production"
 set :normalize_asset_timestamps, false
 set :deploy_via, :remote_cache
+
+set :app_parent_directory, "<%=@app_parent_directory %>" 
 
 #ssh_options[:verbose] = :debug # don't remove it's very important and meant for debugging capistrano
 

@@ -37,8 +37,8 @@ module Setup
       puts
       @stage_name = ask("What would you like to call this stage file?")
       @stage_names << @stage_name
-      @domain = ask("What is your domain name?")
-      @deploy_to = ask("Where on your server would this file be located? (Give file path)")
+      @domain = ask("What is your #{@stage_name} domain name?")
+      @deploy_to = ask("Where on your server would #{@stage_name} be located? (Give file path)")
       @branch = ask("What branch would you like to deploy for this stage?")
     end while(ask?("Would you like to create a (another) stage file? (yes/no)"))
 
