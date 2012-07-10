@@ -31,8 +31,6 @@ set :environment, "production"
 set :normalize_asset_timestamps, false
 set :deploy_via, :remote_cache
 
-set :app_parent_directory, "<%=@app_parent_directory %>" 
-
 #ssh_options[:verbose] = :debug # don't remove it's very important and meant for debugging capistrano
 
 after "deploy", "deploy:cleanup"
