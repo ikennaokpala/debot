@@ -22,23 +22,30 @@ And then execute:
 Or install it yourself as:
 
     $ gem install debot
+    
+    $ capify .
+    
+Next generate the stages and deploy files by typing:
 
-You need to require debot in you deploy.rb file
+    $ rake debot:setup
+    
+NB: You need to require debot in you deploy.rb file, this if you don't want debot to generate the stages and deploy files for you.
+
 
 ## Usage
 For a detailed list of all the the task availble:
 
-$ cap -vT
+    $ cap -vT
 
 To provision an ubuntu based VPS:
 
-$ cap deploy:install
+    $ cap deploy:install
 
-$ cap go:live
+    $ cap go:live
 
-$ cap go:down
+    $ cap go:down
 
-$ cap deploy:takedown
+    $ cap deploy:takedown
 
 ##Version
 
