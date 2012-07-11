@@ -19,20 +19,20 @@ begin
         run %Q{#{sudo} -u postgres psql -c "create user #{postgresql_user} with password '#{postgresql_password}';"}
         run %Q{#{sudo} -u postgres psql -c "create database #{postgresql_database} owner #{postgresql_user};"}
       end
-      after "debot:setup", "postgresql:create_database"
+      after "deploy:setup", "postgresql:create_database"
 
       desc "Generate the database.yml configuration file."
       task :setup, roles: :app do
         run "mkdir -p #{shared_path}/config"
         template "postgresql.yml.erb", "#{shared_path}/config/database.yml"
       end
-      after "debot:setup", "postgresql:setup"
+      after "deploy:setup", "postgresql:setup"
 
       desc "Symlink the database.yml file into latest release"
       task :symlink, roles: :app do
         run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
       end
-      after "debot:finalize_update", "postgresql:symlink"
+      after "deploy:finalize_update", "postgresql:symlink"
     end
   end
 rescue
