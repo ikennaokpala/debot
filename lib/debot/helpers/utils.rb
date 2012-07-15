@@ -37,24 +37,27 @@ module Setup
     @number_of_releases = ask("How many releases would like to keep?")
     @scm = ask("Your choosen scm (git or svn)?")
     @repository = ask("Enter your repository's url/location:")
+    @stage_names = []
 
     begin
+      puts
       puts "Provide details for creating a multi-stage file:"
       puts
       @stage_name = ask("What would you like to call this stage file?")
+      @stage_names << @stage_name
       @domain = ask("What is your #{@stage_name} domain name?")
       @app_parent_directory = ask("What is the parent directory for #{@stage_name} stage? (Given full path details)")
       @deploy_to = ask("Where on your server would #{@stage_name} be located? (Give file path)")
-      @branch = ask("What branch would you like to deploy for this stage?")
+      @branch = ask("What #{@scm} branch would you like to deploy for this stage?")
       stages_directory = File.join(Rails.root, "config/deploy")
 
-      puts "Creating stage file #{stages_directory}/#{stage_name}.rb"
+      puts "Creating stage file #{stages_directory}/#{@stage_name}.rb"
 
       if File.directory?(stages_directory)
-        template_rake("stages.rb.erb", "#{stages_directory}/#{stage_name}.rb")
+        template_rake("stages.rb.erb", "#{stages_directory}/#{@stage_name}.rb")
       else 
         system "mkdir -p #{stages_directory}"
-        template_rake("stages.rb.erb", "#{stages_directory}/#{stage_name}.rb")
+        template_rake("stages.rb.erb", "#{stages_directory}/#{@stage_name}.rb")
       end
     end while(ask?("Would you like to create a (another) stage file? (yes/no)"))
 
@@ -70,5 +73,16 @@ module Setup
   def self.process(question)
     puts question
     STDIN.gets.chomp.downcase #returns user input
+  end
+
+  def self.parse_domain(domain)
+    split_domain = domain.split('.')
+    if split_domain.include?('www')
+      return [domain]
+    elsif split_domain.size >= 3
+      return [domain]
+    else
+      return [domain, "www.#{domain}"]
+    end
   end
 end
