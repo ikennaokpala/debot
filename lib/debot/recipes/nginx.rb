@@ -11,6 +11,7 @@
 
       desc "Setup nginx configuration for this application"
       task :setup, roles: :web do
+        domains = Setup.parse_domain(domain)
         run "mkdir -p #{shared_path}/nginx"
         template "nginx_unicorn.erb", "#{shared_path}/nginx/nginx_conf"
         run "#{sudo} mv #{shared_path}/nginx/nginx_conf /etc/nginx/sites-enabled/#{domain}"
