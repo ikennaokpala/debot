@@ -26,7 +26,7 @@ begin
         task command, roles: :web do
           run "#{sudo} service nginx #{command}"
         end
-        after "deploy:#{command}", "nginx:#{command}"
+        #after "deploy:#{command}", "nginx:#{command}"
       end
     end
   end

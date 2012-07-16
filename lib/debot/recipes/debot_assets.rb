@@ -25,7 +25,7 @@ begin
           #end
         end
         after "deploy", "debot:assets:precompile"
-        after "debot:assets:precompile", "deploy:restart"
+        after "debot:assets:precompile", "unicorn:restart"
       end
     end
   end
