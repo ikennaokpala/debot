@@ -17,7 +17,7 @@ begin
         set :assets_dependencies, fetch(:assets_dependencies) + %w(config/locales/js)
         DESC
         task :precompile, :roles => :web, :except => { :no_release => true } do
-          from = source.next_revision(current_revision)
+          #from = source.next_revision(current_revision)
           #if capture("cd #{latest_release} && #{source.local.log(from)} #{assets_dependencies.join ' '} | wc -l").to_i > 0
             run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
           #else
@@ -29,4 +29,5 @@ begin
       end
     end
   end
+rescue
 end
