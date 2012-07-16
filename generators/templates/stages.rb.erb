@@ -5,5 +5,8 @@ set :branch, "<%=@branch%>"
 set :app_parent_directory, "<%=@app_parent_directory %>"
 set :deploy_to, "<%=@deploy_to%>"
 
+set :rails_env, "<%=@stage_name%>"
+set :environment, "<%=@stage_name%>"
+
 set_default(:stage, "<%=@stage_name%>")
 set_default(:stage_db_user, "<%=@application_name%>_<%=@stage_name%>")
