@@ -19,11 +19,6 @@ begin
       end
       before "debot:takedown","unicorn:stop"
       after "debot:takedown", "nginx:restart"
-      
-      desc "Tail site log"
-      task :log do 
-        system " tails -f #{current_path}/log/#{stage}.log"
-      end
     end
 
     namespace :go do
