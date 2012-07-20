@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.platform = Gem::Platform::RUBY
   gem.authors       = ["Ikenna Okpala"]
   gem.email         = ["ikennaokpala@gmail.com"]
-  gem.description   = %q{Custom recipes that extend capisttrno for provisioning and deploying rails application to a VPS..}
+  gem.description   = %q{Custom recipes that extend capistrano for provisioning and deploying rails application to a Ubuntu VPS..}
   gem.summary       = %q{Home made capistrano recipes bundle into a gem..}
   gem.homepage      = "http://github.com/kengimel/debot"
 
