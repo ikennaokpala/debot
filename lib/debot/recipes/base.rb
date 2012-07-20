@@ -22,17 +22,18 @@ begin
     end
 
     namespace :go do
-      desc "Switch to shortly page and move routes file"
+      desc "Switch to maintenance page and move routes file"
       task :down do
         run "mv #{current_path}/config/routes.rb #{current_path}/config/routes_down.rb"
-        run "cp #{current_path}/config/recipes/templates/routes.rb #{current_path}/config/"
+        template "redirect_controller.rb.erb", "#{current_path}/app/controllers/redirect_controller.rb"
+        template "routes.rb.erb", "#{current_path}/config/routes.rb"
         run "mv #{current_path}/public/index_live.html #{current_path}/public/index.html"
       end
       after "go:down", "debot:restart"
 
       desc "Switch to live content and re-instate routes file"
       task :live do
-        #run "rm #{current_path}/config/routes.rb"
+        run "rm #{current_path}/config/routes.rb #{current_path}/app/controllers/redirect_controller.rb"
         run "mv #{current_path}/config/routes_down.rb #{current_path}/config/routes.rb"
         run "mv #{current_path}/public/index.html #{current_path}/public/index_live.html"
       end
