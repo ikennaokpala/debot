@@ -39,13 +39,25 @@ For a detailed list of all the the task availble:
 
 To provision an ubuntu based VPS:
 
-    $ cap deploy:install
+    $ cap debot:install
 
-    $ cap go:live
+To setup your application/website:
+
+    $ cap deploy:setup
+    
+NB: this will setup your postgres database, nginx and unicorn config for the application.
+
+If you need to work on a bug  in production first:
 
     $ cap go:down
+    
+And then after the bug is fixed:
 
-    $ cap deploy:takedown
+    $ cap go:live
+    
+If you need to undo the application setup (i.e nginx, unicorn and postgres) configs
+
+    $ cap debot:takedown
 
 ##Version
 
