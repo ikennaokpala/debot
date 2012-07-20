@@ -61,7 +61,7 @@ If you need to undo the application setup (i.e nginx, unicorn and postgres) conf
 
 ##Version
 
-0.0.1.alpha
+0.0.1
 
 (I am just pouring out ideas on this gem, as i use it on multiple projects. it is under constant development. You are welcome to contribute, try it out and give feeback)
 
