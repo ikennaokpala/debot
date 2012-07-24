@@ -29,7 +29,7 @@ Next generate the stages and deploy files by typing:
 
     $ rake debot:setup
     
-NB: You need to require debot in you deploy.rb file, this if you don't want debot to generate the stages and deploy files for you.
+NB: You need to require debot in your own deploy.rb file, that is if you don't want debot to generate the stages and deploy files for you as show above.
 
 
 ## Usage
@@ -58,6 +58,8 @@ And then after the bug is fixed:
 If you need to undo the application setup (i.e nginx, unicorn and postgres) configs
 
     $ cap debot:takedown
+ 
+NB: This will undo the setup for your postgres database, nginx and unicorn config files for the application in question.
 
 ##Version
 
