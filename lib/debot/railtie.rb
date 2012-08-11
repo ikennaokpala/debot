@@ -1,5 +1,5 @@
 require 'debot'
-require 'rails'
+require 'rails' if defined? Rails
 module Debot
   class Railtie < Rails::Railtie
     rake_tasks do

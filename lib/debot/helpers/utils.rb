@@ -1,7 +1,7 @@
 require 'erb'
 
 def template_rake(from, to)
-  File.open(to, 'w') { |f| f.write(ERB.new(erb_path(from)).result(binding)) } 
+  File.open(to, 'w') { |f| f.write(ERB.new(erb_path(from)).result(binding)) }
 end
 
 def template(from, to)
@@ -16,8 +16,6 @@ def set_default(name, *args, &block)
   set(name, *args, &block) unless exists?(name)
 end
 
-require 'rails'
-
 module Setup
   def self.ask(question)
     process(question)
@@ -29,7 +27,7 @@ module Setup
 
   def self.run
     puts "Kindly provide the following details:"
-    puts 
+    puts
     @server = ask("Your server name or IP address:")
     @application_name = ask("Your application name:")
     @user = ask("Your deployment user's name:")
@@ -49,27 +47,27 @@ module Setup
       @app_parent_directory = ask("What is the parent directory for #{@stage_name} stage? (Given full path details)")
       @deploy_to = ask("Where on your server would #{@stage_name} be located? (Give file path)")
       @branch = ask("What #{@scm} branch would you like to deploy for this stage?")
-      stages_directory = File.join(Rails.root, "config/deploy")
+      stages_directory = File.join(Bundler.root, "config/deploy")
 
       puts "Creating stage file #{stages_directory}/#{@stage_name}.rb"
 
       if File.directory?(stages_directory)
         template_rake("stages.rb.erb", "#{stages_directory}/#{@stage_name}.rb")
-      else 
+      else
         system "mkdir -p #{stages_directory}"
         template_rake("stages.rb.erb", "#{stages_directory}/#{@stage_name}.rb")
       end
     end while(ask?("Would you like to create a (another) stage file? (yes/no)"))
 
-    deploy_directory = File.join(Rails.root, "config")
+    config_directory = File.join(Bundler.root, "config")
 
-    puts "Creating your deploy file #{deploy_directory}/deploy.rb"
+    puts "Creating your deploy file #{config_directory}/deploy.rb"
 
-    template_rake("deploy.rb.erb", "#{deploy_directory}/deploy.rb")
+    template_rake("deploy.rb.erb", "#{config_directory}/deploy.rb")
 
   end
 
-  private
+private
   def self.process(question)
     puts question
     STDIN.gets.chomp.downcase #returns user input
