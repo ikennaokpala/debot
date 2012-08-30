@@ -7,6 +7,10 @@ server {
   server_name <%= domains.join(" ") %>;
   root <%= current_path %>/public;
 
+  # individual nginx logs for vhost
+    access_log  /var/log/nginx/<%= domain %>_access.log;
+    error_log   /var/log/nginx/<%= domain %>_error.log;
+
   location ^~ /assets/ {
     gzip_static on;
     expires max;
