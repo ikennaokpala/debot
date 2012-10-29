@@ -10,7 +10,7 @@ begin
       task :install, roles: :db, only: {primary: true} do
         run "#{sudo} add-apt-repository -y ppa:pitti/postgresql"
         run "#{sudo} apt-get -y update"
-        run "#{sudo} apt-get -y install postgresql libpq-dev"
+        run "#{sudo} apt-get -y install postgresql libpq-dev postgresql-contrib"
       end
       after "debot:install", "postgresql:install"
 
