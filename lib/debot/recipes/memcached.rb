@@ -20,7 +20,7 @@ begin
       %w[start stop restart].each do |command|
         desc "#{command} Memcached"
         task command, roles: :app do
-          run "service memcached #{command}"
+          run "#{sudo} service memcached #{command}"
         end
       end
     end
