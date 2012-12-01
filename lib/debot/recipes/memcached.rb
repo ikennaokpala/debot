@@ -5,7 +5,7 @@ begin
     namespace :memcached do
       desc "Install Memcached"
       task :install, roles: :app do
-        run "#{sudo} apt-get install memcached"
+        run "#{sudo} apt-get -y install memcached"
       end
       after "debot:install", "memcached:install"
 
