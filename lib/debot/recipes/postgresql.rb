@@ -6,7 +6,7 @@ begin
     set_default(:postgresql_database) { "#{application}_#{stage}" }
     set_default(:postgresql_dump_path) { "#{current_path}/tmp" }
     set_default(:postgresql_dump_file) { "#{application}_dump.sql" }
-    set_default(:postgresql_local_dump_path) { File.expand_path("../../../tmp", __FILE__) }
+    set_default(:postgresql_local_dump_path) { "#{Bundler.root}/tmp" }
 
     namespace :postgresql do
       desc "Install the latest stable release of PostgreSQL."
