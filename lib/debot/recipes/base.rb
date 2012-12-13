@@ -14,10 +14,10 @@ begin
         run "#{sudo} rm /etc/init.d/unicorn_#{domain}"
         run "#{sudo} rm /etc/nginx/sites-enabled/#{domain}"
         run "cd #{app_parent_directory}/#{domain}/ && #{sudo} rm -r *"
-        run "#{sudo} pg_dump -Fp -b -U  #{postgresql_user} #{postgresql_database}  > #{postgresql_database}_#{Time.now}.sql"
         run %Q{#{sudo} -u postgres psql -c "drop database #{postgresql_database};"}
         run %Q{#{sudo} -u postgres psql -c "drop role #{postgresql_user};"}
       end
+      before "debot:takedown","postgresql:local:localize"
       before "debot:takedown","unicorn:stop"
       after "debot:takedown", "nginx:restart"
     end
