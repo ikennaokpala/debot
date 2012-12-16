@@ -107,7 +107,7 @@ begin
           gzfile   = "#{dumpfile}.gz"
           dbyml    = capture "cat #{shared_path}/config/database.yml"
           info     = YAML.load dbyml
-          db       = info['production']
+          db       = info[stage.to_s]
           user, pass, database, host = db['username'], db['password'], db['database'], db['host']
 
           commands = <<-CMD
