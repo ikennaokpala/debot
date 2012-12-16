@@ -40,6 +40,14 @@ begin
       after "deploy:finalize_update", "postgresql:symlink"
 
       namespace :local do
+        desc "Dump local database only"
+        task :dump do
+          info  = YAML.load_file "#{Bundler.root}/config/database.yml"
+          db    = info["development"]
+          user, database = db['username'], db['database']
+          commands = "pg_dump -U #{user} -h localhost #{database} | gzip > #{postgresql_local_dump_path}/#{postgresql_dump_file}.gz"
+          system commands
+        end
         desc "Download remote database to tmp/"
         task :download do
           dumpfile = "#{postgresql_local_dump_path}/#{postgresql_dump_file}.gz"
@@ -48,7 +56,7 @@ begin
 
         desc "Restores local database from temp file"
         task :restore do
-          auth = YAML.load_file(File.expand_path('../../database.yml', __FILE__))
+          auth = YAML.load_file "#{Bundler.root}/config/database.yml"
           dev  = auth['development']
           user, pass, database, host = dev['username'], dev['password'], dev['database'], dev['host']
           dumpfile = "#{postgresql_local_dump_path}/#{postgresql_dump_file}"
@@ -79,9 +87,9 @@ begin
             pg_dump -U #{user} -h #{host} #{database} | \
             gzip > #{postgresql_dump_path}/#{postgresql_dump_file}.gz
           CMD
-          run commands do |ch, stream, data|
+          run commands do |channel, stream, data|
             if data =~ /Password/
-              ch.send_data("#{pass}\n")
+              channel.send_data("#{pass}\n")
             end
           end
         end
@@ -108,9 +116,9 @@ begin
             psql -U #{user} -h #{host} #{database}
           CMD
 
-          run commands do |ch, stream, data|
+          run commands do |channel, stream, data|
             if data =~ /Password/
-              ch.send_data("#{pass}\n")
+              channel.send_data("#{pass}\n")
             end
           end
         end
