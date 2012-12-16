@@ -112,8 +112,7 @@ begin
 
           commands = <<-CMD
             gzip -cd #{gzfile} > #{dumpfile} && \
-            cat #{dumpfile} | \
-            psql -U #{user} -h #{host} #{database}
+            psql -d #{database} -U #{user} -h #{host} -f #{dumpfile}
           CMD
 
           run commands do |channel, stream, data|
