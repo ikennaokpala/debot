@@ -58,9 +58,9 @@ begin
         task :restore do
           auth = YAML.load_file "#{Bundler.root}/config/database.yml"
           dev  = auth['development']
-          user, pass, database, host = dev['username'], dev['password'], dev['database'], dev['host']
+          user, pass, database = dev['username'], dev['password'], dev['database']
           dumpfile = "#{postgresql_local_dump_path}/#{postgresql_dump_file}"
-          system "gzip -cd #{dumpfile}.gz > #{dumpfile} && cat #{dumpfile} | psql -U #{user} -h #{host} #{database}"
+          system "gzip -cd #{dumpfile}.gz > #{dumpfile} && cat #{dumpfile} | psql -U #{user} -h localhost #{database}"
         end
 
         desc "Dump remote database and download it locally"
@@ -82,9 +82,9 @@ begin
           dbyml = capture "cat #{shared_path}/config/database.yml"
           info  = YAML.load dbyml
           db    = info[stage.to_s]
-          user, pass, database, host = db['username'], db['password'], db['database'], db['host']
+          user, pass, database = db['username'], db['password'], db['database']
           commands = <<-CMD
-            pg_dump -U #{user} -h #{host} #{database} | \
+            pg_dump -U #{user} -h localhost #{database} | \
             gzip > #{postgresql_dump_path}/#{postgresql_dump_file}.gz
           CMD
           run commands do |channel, stream, data|
@@ -108,11 +108,11 @@ begin
           dbyml    = capture "cat #{shared_path}/config/database.yml"
           info     = YAML.load dbyml
           db       = info[stage.to_s]
-          user, pass, database, host = db['username'], db['password'], db['database'], db['host']
+          user, pass, database = db['username'], db['password'], db['database']
 
           commands = <<-CMD
             gzip -cd #{gzfile} > #{dumpfile} && \
-            psql -d #{database} -U #{user} -h #{host} -f #{dumpfile}
+            psql -d #{database} -U #{user} -h localhost -f #{dumpfile}
           CMD
 
           run commands do |channel, stream, data|
