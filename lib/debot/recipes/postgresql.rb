@@ -45,7 +45,7 @@ begin
           info  = YAML.load_file "#{Bundler.root}/config/database.yml"
           db    = info["development"]
           user, database = db['username'], db['database']
-          commands = "pg_dump -U #{user} -h localhost #{database} | gzip > #{postgresql_local_dump_path}/#{postgresql_dump_file}.gz"
+          commands = "pg_dump -a -b --attribute-inserts --inserts -U #{user} -h localhost #{database} | gzip > #{postgresql_local_dump_path}/#{postgresql_dump_file}.gz"
           system commands
         end
         desc "Download remote database to tmp/"
@@ -84,7 +84,7 @@ begin
           db    = info[stage.to_s]
           user, pass, database = db['username'], db['password'], db['database']
           commands = <<-CMD
-            pg_dump -U #{user} -h localhost #{database} | \
+            pg_dump -a -b --attribute-inserts --inserts -U #{user} -h localhost #{database} | \
             gzip > #{postgresql_dump_path}/#{postgresql_dump_file}.gz
           CMD
           run commands do |channel, stream, data|
