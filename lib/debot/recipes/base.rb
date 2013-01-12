@@ -30,7 +30,7 @@ begin
         template "routes.rb.erb", "#{current_path}/config/routes.rb"
         run "mv #{current_path}/public/index_live.html #{current_path}/public/index.html"
       end
-      after "go:down", "debot:restart"
+      after "go:down", "deploy:restart"
 
       desc "Switch to live content and re-instate routes file"
       task :live do
@@ -38,7 +38,7 @@ begin
  #       run "mv #{current_path}/config/routes_down.rb #{current_path}/config/routes.rb"
         run "mv #{current_path}/public/index.html #{current_path}/public/index_live.html"
       end
-      after "go:live", "debot:restart"
+      after "go:live", "deploy:restart"
     end
   end
 
