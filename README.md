@@ -9,6 +9,8 @@ This gem originates from Railscasts (Ryan Bates) excellent series of screencasts
 2. [Deploying to a VPS](http://railscasts.com/episodes/335-deploying-to-a-vps)
 3. [Deployment etc..](http://railscasts.com/?tag_id=21)
 
+# Please note debot is currently in code freeze mode. Free feel to fork and play.
+
 ## Installation
 
 Add this line to your application's Gemfile:
