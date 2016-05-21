@@ -76,3 +76,8 @@ NB: This will undo the setup for your postgres database, nginx and unicorn confi
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+# Contributors
+
+* [Ikenna N. Okpala](http://ikennaokpala.com)
+
