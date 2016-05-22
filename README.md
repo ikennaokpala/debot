@@ -1,3 +1,5 @@
+# Please note this project is longer being maintained by me, (officially in code freeze mode). Free feel to fork and play.
+
 # Debot
 
 Custom recipes that extend capistrano for provisioning and deploying rails application to a VPS..
@@ -9,7 +11,7 @@ This gem originates from Railscasts (Ryan Bates) excellent series of screencasts
 2. [Deploying to a VPS](http://railscasts.com/episodes/335-deploying-to-a-vps)
 3. [Deployment etc..](http://railscasts.com/?tag_id=21)
 
-# Please note debot is currently in code freeze mode. Free feel to fork and play.
+
 
 ## Installation
 
